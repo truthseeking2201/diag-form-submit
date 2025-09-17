@@ -13,19 +13,21 @@ type FormContextValue = {
   setOtherTest: (s: string) => void;
   setSignature: (dataUrl?: string) => void;
   reset: () => void;
+  complete: () => void;
   step: 0 | 1 | 2;
   setStep: (s: 0 | 1 | 2) => void;
   canProceedFromStep0: boolean;
   canProceedFromStep1: boolean;
   totalSelected: number;
-  missingPatientFields: string[];
+  missingPatientFields: ('fullName' | 'phone')[];
+  completed: boolean;
 };
 
 const FormContext = React.createContext<FormContextValue | null>(null);
 
-const REQUIRED_PATIENT_FIELDS: Array<{ key: keyof PatientInfo; label: string }> = [
-  { key: 'fullName', label: 'patient name' },
-  { key: 'phone', label: 'phone number' },
+const REQUIRED_PATIENT_FIELDS: Array<{ key: keyof PatientInfo; labelKey: 'fullName' | 'phone' }> = [
+  { key: 'fullName', labelKey: 'fullName' },
+  { key: 'phone', labelKey: 'phone' },
 ];
 
 const initPatient: PatientInfo = {
@@ -51,7 +53,8 @@ const createInitForm = (): FormData => ({
 
 export function FormProvider({ children }: { children: React.ReactNode }) {
   const [data, setData] = React.useState<FormData>(() => loadDraft() ?? createInitForm());
-  const [step, setStep] = React.useState<0 | 1 | 2>(0);
+  const [step, setStepState] = React.useState<0 | 1 | 2>(0);
+  const [completed, setCompleted] = React.useState(false);
 
   const saveRef = React.useRef<number | null>(null);
   React.useEffect(() => {
@@ -102,11 +105,31 @@ export function FormProvider({ children }: { children: React.ReactNode }) {
   const setSignature = (dataUrl?: string) =>
     setData(prev => ({ ...prev, signatureDataUrl: dataUrl }));
 
+  const updateStep = (next: 0 | 1 | 2) => {
+    setStepState(next);
+    if (next !== 2) {
+      setCompleted(false);
+    }
+  };
+
   const reset = () => {
     clearDraft();
     setData(createInitForm());
-    setStep(0);
+    setStepState(0);
+    setCompleted(false);
   };
+
+  const complete = () => {
+    setCompleted(true);
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  React.useEffect(() => {
+    if (!completed) return;
+    setCompleted(false);
+  }, [data]);
 
   const totalSelected =
     data.selectedItemIds.size + (data.otherTest.trim() ? 1 : 0);
@@ -119,7 +142,7 @@ export function FormProvider({ children }: { children: React.ReactNode }) {
 
   const missingPatientFields = REQUIRED_PATIENT_FIELDS.filter(({ key }) =>
     data.patient[key].trim().length === 0
-  ).map(f => f.label);
+  ).map(f => f.labelKey);
 
   const value: FormContextValue = {
     data,
@@ -131,12 +154,14 @@ export function FormProvider({ children }: { children: React.ReactNode }) {
     setOtherTest,
     setSignature,
     reset,
+    complete,
     step,
-    setStep,
+    setStep: updateStep,
     canProceedFromStep0,
     canProceedFromStep1,
     totalSelected,
     missingPatientFields,
+    completed,
   };
 
   return <FormContext.Provider value={value}>{children}</FormContext.Provider>;

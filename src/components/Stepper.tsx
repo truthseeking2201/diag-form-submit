@@ -1,13 +1,20 @@
 import React from 'react';
 import { useForm } from '../hooks/useForm';
+import { useLocale } from '../i18n/LocaleContext';
 
 export const Stepper: React.FC = () => {
   const { step, totalSelected, data } = useForm();
-  const labels = ['Patient', 'Tests', 'Review'];
+  const { t } = useLocale();
+  const labels = [t('stepPatient'), t('stepTests'), t('stepReview')];
   const hints: [string, string, string] = [
-    data.patient.fullName ? data.patient.fullName : 'Add core details',
-    totalSelected > 0 ? `${totalSelected} selected` : 'Pick at least one test',
-    data.signatureDataUrl ? 'Signed' : 'Signature pending',
+    data.patient.fullName ? data.patient.fullName : t('stepPatientHintEmpty'),
+    totalSelected > 0
+      ? t('stepTestsSelected', {
+          count: totalSelected,
+          plural: totalSelected > 1 ? 's' : '',
+        })
+      : t('stepTestsHintEmpty'),
+    data.signatureDataUrl ? t('signatureCaptured') : t('stepReviewHintEmpty'),
   ];
   return (
     <header className="stepper">
