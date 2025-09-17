@@ -1,0 +1,141 @@
+import { TestCategory } from '../types';
+
+// The full catalog in EN (+ VI for traceability) extracted from the PDF (pp.1–2).
+
+export const CATALOG: TestCategory[] = [
+  {
+    id: 'c1',
+    order: 1,
+    nameEn: '1. Anemia Screening',
+    nameVi: '1. Tầm soát thiếu máu',
+    items: [
+      { id: 'c1_1', en: 'Complete Blood Count (CBC)', vi: 'Công thức máu (CBC)' },
+      { id: 'c1_2', en: 'Iron (Fe)', vi: 'Sắt (Fe)' },
+      { id: 'c1_3', en: 'Ferritin', vi: 'Ferritin' },
+      { id: 'c1_4', en: 'Vitamin B9', vi: 'Vitamin B9' },
+      { id: 'c1_5', en: 'Vitamin B12', vi: 'Vitamin B12' },
+    ],
+  },
+  {
+    id: 'c2',
+    order: 2,
+    nameEn: '2. Diabetes and Metabolic Disorders',
+    nameVi: '2. Tiểu đường và rối loạn chuyển hóa',
+    items: [
+      { id: 'c2_1', en: 'Glucose Fasting', vi: 'Glucose đói' },
+      { id: 'c2_2', en: 'Glucose Random', vi: 'Glucose ngẫu nhiên' },
+      { id: 'c2_3', en: 'HbA1C', vi: 'HbA1C' },
+      { id: 'c2_4', en: 'Estimated Average Glucose (eAG)', vi: 'Đường huyết trung bình (eAG)' },
+      { id: 'c2_5', en: 'HOMA-IR', vi: 'HOMA-IR' },
+      { id: 'c2_6', en: 'Total Cholesterol', vi: 'Cholesterol toàn phần' },
+      { id: 'c2_7', en: 'HDL Cholesterol', vi: 'HDL Cholesterol' },
+      { id: 'c2_8', en: 'LDL Cholesterol', vi: 'LDL Cholesterol' },
+      { id: 'c2_9', en: 'Cholesterol/HDL Ratio', vi: 'Tỷ lệ Cholesterol/HDL' },
+      { id: 'c2_10', en: 'Triglycerides', vi: 'Triglycerides' },
+    ],
+  },
+  {
+    id: 'c3',
+    order: 3,
+    nameEn: '3. Cardiovascular Risk Assessment',
+    nameVi: '3. Nguy cơ tim mạch',
+    items: [
+      { id: 'c3_1', en: 'Apolipoprotein A1', vi: 'Apolipoprotein A1' },
+      { id: 'c3_2', en: 'Apolipoprotein B', vi: 'Apolipoprotein B' },
+      { id: 'c3_3', en: 'Apolipoprotein B/A1 Ratio', vi: 'Tỷ lệ Apolipoprotein B/A1' },
+      { id: 'c3_4', en: 'Lipoprotein(a)', vi: 'Lipoprotein(a)' },
+      { id: 'c3_5', en: 'hs CRP', vi: 'hs CRP' },
+      { id: 'c3_6', en: 'Homocysteine', vi: 'Homocysteine' },
+    ],
+  },
+  {
+    id: 'c4',
+    order: 4,
+    nameEn: '4. Liver - Bile - Pancreatic Function',
+    nameVi: '4. Chức năng gan - mật - tụy',
+    items: [
+      { id: 'c4_1', en: 'ALAT (SGPT)', vi: 'ALAT (SGPT)' },
+      { id: 'c4_2', en: 'ASAT (SGOT)', vi: 'ASAT (SGOT)' },
+      { id: 'c4_3', en: 'Gamma GT', vi: 'Gamma GT' },
+      { id: 'c4_4', en: 'Total Bilirubin', vi: 'Bilirubin toàn phần' },
+      { id: 'c4_5', en: 'Direct Bilirubin', vi: 'Bilirubin trực tiếp' },
+      { id: 'c4_6', en: 'Indirect Bilirubin', vi: 'Bilirubin gián tiếp' },
+      { id: 'c4_7', en: 'Uric Acid', vi: 'Acid Uric' },
+      { id: 'c4_8', en: 'Urea', vi: 'Urea' },
+      { id: 'c4_9', en: 'Creatinine', vi: 'Creatinin' },
+      { id: 'c4_10', en: 'Total Protein', vi: 'Protein toàn phần' },
+      { id: 'c4_11', en: 'Protein/Creatinine Ratio', vi: 'Tỷ lệ Protein/Creatinin' },
+      { id: 'c4_12', en: 'Urine analysis', vi: 'Tổng phân tích nước tiểu' },
+      { id: 'c4_13', en: 'Urine Sediment', vi: 'Cặn lắng nước tiểu' },
+      { id: 'c4_14', en: 'Estimated Glomerular Filtration Rate (eGFR)', vi: 'Độ lọc cầu thận (eGFR)' },
+      { id: 'c4_15', en: 'Lipase', vi: 'Lipase' },
+      { id: 'c4_16', en: 'Amylase', vi: 'Amylase' },
+    ],
+  },
+  {
+    id: 'c5',
+    order: 5,
+    nameEn: '5. Hepatitis',
+    nameVi: '5. Viêm gan siêu vi',
+    items: [
+      { id: 'c5_1', en: 'HBsAg', vi: 'HBsAg' },
+      { id: 'c5_2', en: 'HBsAb', vi: 'HBsAb' },
+      { id: 'c5_3', en: 'HCV Ab', vi: 'HCV Ab' },
+    ],
+  },
+  {
+    id: 'c6',
+    order: 6,
+    nameEn: '6. Thyroid Function',
+    nameVi: '6. Chức năng tuyến giáp',
+    items: [
+      { id: 'c6_1', en: 'TSH', vi: 'TSH' },
+      { id: 'c6_2', en: 'T3', vi: 'T3' },
+      { id: 'c6_3', en: 'FT4', vi: 'FT4' },
+    ],
+  },
+  {
+    id: 'c7',
+    order: 7,
+    nameEn: '7. Nutrition & Microelements',
+    nameVi: '7. Dinh dưỡng & vi chất',
+    items: [
+      { id: 'c7_1', en: 'Electrolytes Panel (Na + K + Cl)', vi: 'Điện Giải Đồ (Na + K + Cl)' },
+      { id: 'c7_2', en: 'Calcium (Ca)', vi: 'Canxi (Ca)' },
+      { id: 'c7_3', en: 'Zinc (Zn)', vi: 'Kẽm (Zn)' },
+      { id: 'c7_4', en: 'Magnesium (Mg)', vi: 'Magiê (Mg)' },
+      { id: 'c7_5', en: 'Phosphorus (P)', vi: 'Phospho (P)' },
+      { id: 'c7_6', en: 'Vitamin D', vi: 'Vitamin D' },
+      { id: 'c7_7', en: '222 Food Sensitivity', vi: 'XN nhạy cảm với 222 loại thực phẩm' },
+    ],
+  },
+  {
+    id: 'c8',
+    order: 8,
+    nameEn: '8. Hormones',
+    nameVi: '8. Nội tiết tố',
+    items: [
+      { id: 'c8_1', en: 'Cortisol (8AM - 12PM)', vi: 'Cortisol (8AM - 12PM)' },
+      { id: 'c8_2', en: 'Cortisol (12PM - 20PM)', vi: 'Cortisol (12PM - 20PM)' },
+      { id: 'c8_3', en: 'DHEA-S', vi: 'DHEA-S' },
+      { id: 'c8_4', en: 'Insulin', vi: 'Insulin' },
+      { id: 'c8_5', en: 'Testosterone', vi: 'Testosterone' },
+      { id: 'c8_6', en: 'SHBG', vi: 'SHBG' },
+    ],
+  },
+  {
+    id: 'c9',
+    order: 9,
+    nameEn: '9. Other Tests',
+    nameVi: '9. Xét nghiệm khác',
+    items: [
+      { id: 'c9_1', en: 'LDH', vi: 'LDH' },
+      { id: 'c9_2', en: 'Creatine Kinase (CK/CPK)', vi: 'Creatine Kinase (CK/CPK)' },
+      { id: 'c9_3', en: 'IL-6', vi: 'IL-6' },
+      { id: 'c9_4', en: 'IL-10', vi: 'IL-10' },
+      { id: 'c9_5', en: 'IGF-1', vi: 'IGF-1' }
+    ],
+  },
+];
+
+export const DEFAULT_DOCCODE = '23209';
